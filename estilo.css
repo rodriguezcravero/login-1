@@ -1,0 +1,199 @@
+/*Es buena práctica quitarle el margen y padding que por defecto tiene el navegador*/
+html, body
+{
+	margin: 0;
+	padding: 0;
+}
+
+/*
+Para que la pantalla esté siempre rellena, el body ocupa el 100% de las unidades de pantalla (100vh).
+El gradient lo hice buscando colores en google con el color-picker, y es desde left-bottom to right top.
+Para centrar el contenedor en el body, se aplica un display:flex al body, y su atributo de justify-content:center
+*/
+body
+{
+	background-image: linear-gradient(to right top, #604ff7, #bf2eba);
+	min-height: 100vh;
+  	display: flex;
+  	justify-content: center;
+
+
+    font-family: 'Baloo Chettan 2', cursive;
+
+
+}
+
+/*
+Todo el contenido va dentro de un div llamado contenedor.
+Los márgenes del contenedor van automáticos para centrar.
+Tiene padding a cada costado, para dejar más margen blanco entre imagen y form.
+*/
+.contenedor
+{
+	width: 75%;
+	height: 90%;
+	background-color: white;
+	margin: auto;
+	border-radius: 1em;
+	padding-right: 4em;
+	padding-left: 4em;
+}
+
+/*En una página, generé de forma automática un grid de 2 columnas, para la imagen y el form*/
+.contenedor {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 2em;
+grid-row-gap: 0px;
+}
+.imagen { grid-area: 1 / 1 / 2 / 2; }
+.formulario { grid-area: 1 / 2 / 2 / 3; }
+
+/*El formulario ocupa un porcentaje de su espacio, con márgenes automáticos en los costados*/
+form
+{
+	min-width: 300px;
+	width: 70%;
+}
+
+/*Espacio que separa al botón de los inputs*/
+button
+{
+	margin-top: 2em;
+}
+
+/*En divs de imagen y formulario, uso display flex, y dos atributos (align es vertical, y justify es horizontal) para centrar los elementos*/
+.imagen
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+/*
+Poder lograr que el form quede centrado y el texto de "Create account" quede abajo no fue fácil. Lo resolví añadiendo un 'justify-content:between' entre 3 elementos, el 1° de ellos sin texto.
+*/
+.formulario
+{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+/*Borro el borde rojo automático de Bootstrap de input inválido*/
+input:invalid {
+    box-shadow: none;
+}
+
+/*Estilos propios de ambos imputs*/
+form .form-group input
+{
+	background-color: lightgrey;
+	border-radius: 3em;
+	height: 3em;
+	padding-left: 4em;
+	padding-right: 3em;
+	transition: border 0.1s linear, box-shadow 0.1s linear;
+}
+
+/*Estilo cuando se hace click dentro del input*/
+form .form-group input:focus
+{
+	border-color: green;
+    box-shadow: 0 0 15px green;
+}
+
+/*Al salir el cursor del input, vuelve al estilo original*/
+form .form-group input:blur
+{
+	border-color: none;
+    box-shadow: 0 0;
+}
+
+/*Le agregué estilo propio de input inválido*/
+.inputWrong
+{
+	border-color: red;
+    box-shadow: 0 0 15px red;
+}
+
+form .btn
+{
+	background-color: green;
+	border-radius: 3em;
+	height: 3em;
+	color: white;
+	transition: background-color 0.5s;
+}
+
+form .btn:hover
+{
+	background-color: #2e3033;
+	color: white;
+}
+
+/*Esto es para que el ícono se centre*/
+.form-group i
+{
+	position: absolute;
+}
+
+/*En el original, se usaba una animación que rotaba los ejes con JS. Aquí le hice una simple transición*/
+img
+{
+	transition: all 2s;
+}
+
+img:hover
+{
+	transform: rotateY(60deg);
+	
+}
+  
+.icon 
+{ 
+    padding-left: 20px;
+    color: darkgrey; 
+    min-width: 50px; 
+    text-align: center;
+    vertical-align: middle;
+    transition: transform 0.2s;
+} 
+
+/*Para mover un elemento a la izquieda, se usa 'transform: translate(-12px);'*/
+
+.iconoLeft
+{
+	transition: 0.5s;
+	transform: translate(-5px);
+	color: green;
+}
+
+
+@media (max-width: 950px) {
+	img
+	{
+		height: 80%;
+		width: auto;
+	}	
+
+	.contenedor 
+	{
+		height: auto;
+
+		padding: 0;
+
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 25% 1fr;
+		grid-column-gap: 0px;
+		grid-row-gap: 0px;
+	}
+
+	.imagen { grid-area: 1 / 1 / 2 / 2; }
+	.formulario { grid-area: 2 / 1 / 3 / 2; }
+
+}
